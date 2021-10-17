@@ -23,7 +23,7 @@ function CreateAccount(props) {
                 fName: fname, lName: lname, job: job, city: city, address: address, email: email, age: age, birthDate: birth,
                 username: username, password: password, gender: gender
             };
-            await axios.post("mongodb+srv://eladg123:eladg123@mern-chicago-bulls.eissr.mongodb.net/mern-chicago-bulls?retryWrites=true&w=majority/api/bullsup", newProfile);
+            await axios.post("https://eccomerce-mern-chicago-bulls.herokuapp.com/api/profiles", newProfile);
             sessionStorage.setItem("name", fname);
             props.history.push("/Enjoy");
 

@@ -9,10 +9,11 @@ function LoginComp(props) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     useEffect(async () => {
-        let resp = await axios.get("mongodb+srv://eladg123:eladg123@mern-chicago-bulls.eissr.mongodb.net/mern-chicago-bulls?retryWrites=true&w=majority/api/profiles");
+        let resp = await axios.get("https://eccomerce-mern-chicago-bulls.herokuapp.com/api/profiles");
         setUsers(resp.data);
     }, [])
     const loginFunc = async () => {
+        console.log(users)
         users.forEach(user => {
             if (user.username == username && password == user.password) {
                 loginBool = true;
@@ -25,6 +26,7 @@ function LoginComp(props) {
         if (loginBool != true) {
             alert("Username or password incorrect! Please try again")
         }
+
     }
     return (<div>
 

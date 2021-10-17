@@ -12,7 +12,7 @@ function ProfileComp(props) {
     const [address, setAddress] = useState(profile.address);
     const [currentUser, setCurrentUser] = useState();
     useEffect(async () => {
-        let resp = await axios.get(`mongodb+srv://eladg123:eladg123@mern-chicago-bulls.eissr.mongodb.net/mern-chicago-bulls?retryWrites=true&w=majority/api/profiles/${profile._id}`);
+        let resp = await axios.get(`https://eccomerce-mern-chicago-bulls.herokuapp.com/api/profiles/${profile._id}`);
         setCurrentUser(resp.data)
     }, [])
     if (currentUser && currentUser.tickets.length > 0) {
@@ -39,7 +39,7 @@ function ProfileComp(props) {
             username: profile.username,
             password: profile.password
         }
-        await axios.put(`mongodb+srv://eladg123:eladg123@mern-chicago-bulls.eissr.mongodb.net/mern-chicago-bulls?retryWrites=true&w=majority/api/bullsup/${profile._id}`, updateMyProfile);
+        await axios.put(`https://eccomerce-mern-chicago-bulls.herokuapp.com/api/profiles/${profile._id}`, updateMyProfile);
         sessionStorage.removeItem("profile");
         let profileJSON = JSON.stringify(updatedProfile);
         sessionStorage.setItem("profile", profileJSON)
@@ -47,7 +47,7 @@ function ProfileComp(props) {
         props.history.push("/main")
     }
     const deleteProfile = async () => {
-        await axios.delete(`mongodb+srv://eladg123:eladg123@mern-chicago-bulls.eissr.mongodb.net/mern-chicago-bulls?retryWrites=true&w=majority/api/bullsup/${profile._id}`)
+        await axios.delete(`https://eccomerce-mern-chicago-bulls.herokuapp.com/api/profiles/${profile._id}`)
         alert("Your account has been deleted! 👊🏻")
         props.history.push("/")
     }

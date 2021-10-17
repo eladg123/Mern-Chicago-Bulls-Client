@@ -6,8 +6,8 @@ function TicketsComp(props) {
     const [currentUser, setUser] = useState();
     const [games, setGames] = useState();
     useEffect(async () => {
-        let resp = await axios.get("mongodb+srv://eladg123:eladg123@mern-chicago-bulls.eissr.mongodb.net/mern-chicago-bulls?retryWrites=true&w=majority/api/games");
-        let resp2 = await axios.get(`mongodb+srv://eladg123:eladg123@mern-chicago-bulls.eissr.mongodb.net/mern-chicago-bulls?retryWrites=true&w=majority/api/profiles/${sessionStorage.getItem("id")}`)
+        let resp = await axios.get("https://eccomerce-mern-chicago-bulls.herokuapp.com/api/games");
+        let resp2 = await axios.get(`https://eccomerce-mern-chicago-bulls.herokuapp.com/api/profiles/${sessionStorage.getItem("id")}`)
         setGames(resp.data)
         setUser(resp2.data);
     }, [])
@@ -51,7 +51,7 @@ function TicketsComp(props) {
                 if (currentUser.tickets.length == 0) {
                     let profileToUpdate = currentUser;
                     profileToUpdate.tickets = [{ date: filterTickets[0].date, against: filterTickets[0].opponent, price: filterTickets[0].price }];
-                    await axios.put(`mongodb+srv://eladg123:eladg123@mern-chicago-bulls.eissr.mongodb.net/mern-chicago-bulls?retryWrites=true&w=majority/api/profiles/${sessionStorage.getItem("id")}`, profileToUpdate);
+                    await axios.put(`https://eccomerce-mern-chicago-bulls.herokuapp.com/api/profiles/${sessionStorage.getItem("id")}`, profileToUpdate);
                     setUser(profileToUpdate);
                     alert("Thank you for buying ticket for our game, have fun and hope to see you in another fights this season");
                 }
@@ -60,7 +60,7 @@ function TicketsComp(props) {
                     if (userTickets.length == 0) {
                         let updatedProfile = currentUser;
                         updatedProfile.tickets = [...updatedProfile.tickets, { date: filterTickets[0].date, against: filterTickets[0].opponent, price: filterTickets[0].pric }];
-                        await axios.put(`mongodb+srv://eladg123:eladg123@mern-chicago-bulls.eissr.mongodb.net/mern-chicago-bulls?retryWrites=true&w=majority/api/profiles/${sessionStorage.getItem("id")}`, updatedProfile);
+                        await axios.put(`https://eccomerce-mern-chicago-bulls.herokuapp.com/api/profiles/${sessionStorage.getItem("id")}`, updatedProfile);
                         setUser(updatedProfile);
                         alert("Thank you for buying ticket for our game, have fun and hope to see you in another fights this season");
                     }
