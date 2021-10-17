@@ -39,7 +39,7 @@ function ProfileComp(props) {
             username: profile.username,
             password: profile.password
         }
-        await axios.put(`https://eccomerce-mern-chicago-bulls.herokuapp.com/api/profiles/${profile._id}`, updateMyProfile);
+        await axios.put(`https://eccomerce-mern-chicago-bulls.herokuapp.com/api/profiles/${profile._id}`,updatedProfile );
         sessionStorage.removeItem("profile");
         let profileJSON = JSON.stringify(updatedProfile);
         sessionStorage.setItem("profile", profileJSON)
